@@ -3,73 +3,86 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel="stylesheet" type="text/css" href="css/vproteinStylesheet.css" /> -->
-    <script defer src="js/vproteinJavascript.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/vProteinStylesheet.css" />
+    <script defer src="js/vProteinJavascript.js"></script>
     <title>Protein calculator</title>
   </head>
-  <body>
-    <header>
-      <h1>Hey, veggie! Are you taking your minimum protein amounts?</h1>
+  <body class="container">
+    <header class="header">
+      <h1>Protein Calculator</h1>
     </header>
-    <h2>We need protein to be 10% to 35% of our total calories per day. So, first, we should calculate our total calories.</p>
+
+    <div class="intro">
+      <h2>Hey, veggie! Are you taking your minimum protein amounts?</h2>
+      <p>We need protein to be 10% to 35% of our total calories per day. So, first, we should calculate our total calories.</p>
       <p>For this purpose we're going to calculate your BMR (basal metabolic rate) and AMR (active metabolic rate).</p>
-    <form class="total-Cal">
-      <label for="gender">Female</label>
-      <input type="radio" name="gender" value="female" class="gender" checked>
+    </div>
 
-      <label for="gender">Male</label>
-      <input type="radio" name="gender" value="male" class="gender">
+    <div class="calculator">
+      <p class="calculator-tittle">Calculator</p>
+      <form class="total-Cal">
+        <label for="gender">Female</label>
+        <input type="radio" name="gender" value="female" class="gender" checked>
 
-      <br>
+        <label for="gender">Male</label>
+       <input type="radio" name="gender" value="male" class="gender">
+
+       <br>
   
-      <label for="age">Age</label>
-      <input type="text" name="age" placeholder="input age in years" class="age" value="30"></select>
+        <label for="age">Age</label>
+       <input type="text" name="age" placeholder="input age in years" class="age" value="30"></select>
 
-      <br>
+        <br>
 
-      <label for="weight">Weight</label>
-      <input type="text" name="weight" placeholder="input weight" class="weight" value="65"></select>
+        <label for="weight">Weight</label>
+        <input type="text" name="weight" placeholder="input weight" class="weight" value="65"></select>
 
-      <select name="w-value" id="weight-select">
-      <option value="kg">kg</option>
-      <option value="pounds">Pounds</option>
-      </select>
+        <select name="w-value" id="weight-select">
+       <option value="kg">kg</option>
+       <option value="pounds">Pounds</option>
+        </select>
 
-      <br>
+        <br>
 
-      <label for="height">Height</label>
-      <input type="text" name="height" placeholder="input height" class="height" value="165"></select>
+        <label for="height">Height</label>
+       <input type="text" name="height" placeholder="input height" class="height" value="165"></select>
 
-      <select name="h-value" id="height-select">
-      <option value="cm">cm</option>
-      <option value="feet">Feet</option>
-      </select>
+       <select name="h-value" id="height-select">
+       <option value="cm">cm</option>
+       <option value="feet">Feet</option>
+       </select>
 
-      <br>
+        <br>
 
-      <label for="activity-level">Choose your level of activity</label>
-      <select name="select-activity-level" id="activity">
-      <option value="low" selected>No exercise</option>
-      <option value="light">Exercise 1-3 times per week</option>
-      <option value="moderate">Exercise 3-5 times per week</option>
-      <option value="active">Exercise 6-7 times per week</option>
-      <option value="intensive">Hard exercise 6-7 times per week</option>
-      </select>
+       <label for="activity-level">Choose your level of activity</label>
+       <select name="select-activity-level" id="activity">
+       <option value="low" selected>No exercise</option>
+       <option value="light">Exercise 1-3 times per week</option>
+       <option value="moderate">Exercise 3-5 times per week</option>
+       <option value="active">Exercise 6-7 times per week</option>
+       <option value="intensive">Hard exercise 6-7 times per week</option>
+        </select>
 
-      <br>
+        <br>
 
-      <button class="calculate-btn">Calculate</button>
+        <button class="calculate-btn">Calculate</button>
     
-    </form>
-    <div>  
-      <div class="display-total-cal"></div>
-      <div class="display-protein-grams"></div>
+      </form>
+    </div>
+    <div class="results display-results hidden">
+      <p>These are you results:</p>
+      <p>Total calories: <span class="AMR-result"></span> cal/day</p>
+      <p>Minimum ideal protein: <span class="protein-Min"></span> g/day</p>
+      <p>Maximum ideal protein: <span class="protein-Max"></span> g/day</p>  
       <p>This is the amount of protein grams your should consume a day  to maintain your weigth and needs.</p>
     </div>
   
-    <div>
-      <h3>We've several strong sources of protein. Check how much of each you would need to reach your goal</h3>
+    <h3 class="separator">Here are several strong sources of protein. Check how much of each you would need to reach your goal!</h3>
 
+    <div class="protein-selection">
       <form class="protein-sources">
 
         <label for="select-protein-source">Choose a protein source</label>
@@ -95,10 +108,12 @@
 
       </form>
 
+    </div>
+    <div class="protein-chart" >
       <div class="display-sum"></div>
     </div>
 
-    <footer>
+    <footer class="footer">
       <p>The values presented may vary depending on the product that you may have. Please note that this site is only meant to be helpful and fun and never a replacement for medical advisement.</p>
       <p>Sources?</p>
       <!-- https://www.verywellfit.com/ -->

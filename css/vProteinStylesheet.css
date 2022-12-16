@@ -1,0 +1,93 @@
+/* --------MAIN GRID-------- */
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr 0.3fr 1fr 0.2fr;
+  grid-template-areas:
+    "header header"
+    "intro intro"
+    "calculator results"
+    "separator separator"
+    "protein-selection protein-chart"
+    "footer footer";
+  grid-gap: 0.5rem;
+  /* align-items: center;
+  justify-items: center; */
+}
+
+.header {
+  background-color: rgb(230, 161, 161);
+  grid-area: header;
+}
+
+.intro {
+  background-color: rgb(177, 210, 238);
+  grid-area: intro;
+}
+
+.calculator {
+  background-color: rgb(204, 222, 238);
+  grid-area: calculator;
+}
+
+.results {
+  background-color: rgb(187, 243, 201);
+  grid-area: results;
+}
+
+.separator {
+  background-color: rgb(125, 161, 158);
+  grid-area: separator;
+}
+
+.protein-selection {
+  background-color: rgb(236, 194, 229);
+  grid-area: protein-selection;
+}
+
+.protein-chart {
+  background-color: rgb(243, 233, 190);
+  grid-area: protein-chart;
+}
+
+.footer {
+  background-color: rgb(238, 178, 178);
+  grid-area: footer;
+}
+
+/* --------STYLING-------- */
+
+header {
+  font-family: "Montserrat", sans-serif;
+  margin: auto;
+  font-size: 1.5rem;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+/* --------MOBILE GRID-------- */
+@media screen and (max-width: 480px) {
+  .container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.2fr 1fr 1fr 0.3fr 1fr 1fr 0.2fr;
+    grid-template-areas:
+      "header"
+      "intro"
+      "calculator"
+      "results"
+      "separator"
+      "protein-selection"
+      "protein-chart"
+      "footer";
+    grid-gap: 0.2rem;
+  }
+} ;

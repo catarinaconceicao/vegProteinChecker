@@ -1,29 +1,56 @@
-//try creating a function with every variable inside, that only triggers on click, use  e.preventDefault();
-
+//Selecting button
 const calculateBtn = document.querySelector(".calculate-btn");
-let AMRresult = "";
 
+let AMRresult = "";
+let proteinMin = "";
+let proteinMax = "";
+
+//Selecting results <div>
+const resultsDiv = document.querySelector(".display-results");
+
+const init = () => {
+  resultsDiv.classList.add("hidden");
+};
+
+const AMRresultDisplay = document.querySelector(".AMR-result");
+const proteinMinDisplay = document.querySelector(".protein-Min");
+const proteinMaxDisplay = document.querySelector(".protein-Max");
+
+// init();
+// Calculate Protein Minimums and Maximums
 calculateBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
-  let age = document.querySelector(".age").value;
-  let gender = document.querySelector("input[name='gender']:checked").value;
-  let weight = document.querySelector(".weight").value;
-  let height = document.querySelector(".height").value;
-  let activity = document.querySelector("#activity").value;
+  // Selecting BMR formula values
+  const age = document.querySelector(".age").value;
+  const gender = document.querySelector("input[name='gender']:checked").value;
+  const weight = document.querySelector(".weight").value;
+  const height = document.querySelector(".height").value;
+  const activity = document.querySelector("#activity").value;
 
-  let BMRresultFem = 10 * weight + 6.25 * height - 5 * age - 161;
-  let BMRresultMale = 10 * weight + 6.25 * height - 5 * age + 5;
+  const BMRresultFem = 10 * weight + 6.25 * height - 5 * age - 161;
+  const BMRresultMale = 10 * weight + 6.25 * height - 5 * age + 5;
 
+  // Selecting activity levels for AMR
   const low = 1.2;
   const light = 1.375;
   const moderate = 1.55;
   const active = 1.725;
   const intensive = 1.9;
 
-  const displayResultsHtml = "";
+  const calculateAndDisplayResults = function (BMRbyGender, activityLevel) {
+    init();
+    resultsDiv.classList.remove("hidden");
 
-  console.log(activity);
+    AMRresult = BMRbyGender * activityLevel;
+    proteinMin = AMRresult * 0.1;
+    proteinMax = AMRresult * 0.35;
+
+    AMRresultDisplay.innerHTML = `${AMRresult}`;
+    proteinMinDisplay.innerHTML = `${proteinMin}`;
+    proteinMaxDisplay.innerHTML = `${proteinMax}`;
+  };
+
   if (age < 18) {
     alert(`Age needs to be equal or higher than 18`);
     return;
@@ -31,48 +58,39 @@ calculateBtn.addEventListener("click", function (e) {
 
   if (gender === "female") {
     if (activity === "low") {
-      AMRresult = BMRresultFem * low;
+      calculateAndDisplayResults(BMRresultFem, low);
     }
     if (activity === "light") {
-      AMRresult = BMRresultFem * light;
+      calculateAndDisplayResults(BMRresultFem, light);
     }
     if (activity === "moderate") {
-      AMRresult = BMRresultFem * moderate;
+      calculateAndDisplayResults(BMRresultFem, moderate);
     }
     if (activity === "active") {
-      AMRresult = BMRresultFem * active;
+      calculateAndDisplayResults(BMRresultFem, active);
     }
     if (activity === "intensive") {
-      AMRresult = BMRresultFem * intensive;
+      calculateAndDisplayResults(BMRresultFem, intensive);
     }
-
-    console.log(AMRresult);
-    return;
   }
 
   if (gender === "male") {
     if (activity === "low") {
-      AMRresult = BMRresultMale * low;
+      calculateAndDisplayResults(BMRresultMale, low);
     }
     if (activity === "light") {
-      AMRresult = BMRresultMale * light;
+      calculateAndDisplayResults(BMRresultMale, light);
     }
     if (activity === "moderate") {
-      AMRresult = BMRresultMale * moderate;
+      calculateAndDisplayResults(BMRresultMale, moderate);
     }
     if (activity === "active") {
-      AMRresult = BMRresultMale * active;
+      calculateAndDisplayResults(BMRresultMale, active);
     }
     if (activity === "intensive") {
-      AMRresult = BMRresultMale * intensive;
+      calculateAndDisplayResults(BMRresultMale, intensive);
     }
 
-    console.log(AMRresult);
     return;
   }
 });
-
-// console.log(age);
-// console.log(gender);
-// console.log(weight);
-// console.log(height);
