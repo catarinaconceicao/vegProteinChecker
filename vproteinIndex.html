@@ -7,119 +7,122 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/vProteinStylesheet.css" />
+    <link rel="icon" type="image/png" href="img/calculator-icon-2.png">
     <script defer src="js/vProteinJavascript.js"></script>
-    <title>Protein calculator</title>
+    <title>Protein Calculator</title>
   </head>
   <body class="container">
     <header class="header">
-      <h1>Protein Calculator</h1>
+      <h1>My Protein Calculator </h1>
+      <img src="img/green-calculator.png" alt="Green calculator">
     </header>
 
     <div class="intro">
-      <h2>Hey, veggie! Are you taking your minimum protein amounts?</h2>
-      <p>We need protein to be 10% to 35% of our total calories per day. So, first, we should calculate our total calories.</p>
-      <p>For this purpose we're going to calculate your BMR (basal metabolic rate) and AMR (active metabolic rate).</p>
+      <div class="salutation-heading">
+        <h2 >Hey, veggie! <br> Are you taking your <u>minimum protein amounts</u>?</h2>
+      </div>
+      <div class="salutation-div">
+        <p>We need our protein intake to be 10% to 35% of our total calories per day. So, first, we should calculate our total calories.</p>
+        <p >For this purpose we're going to calculate your BMR (basal metabolic rate) and AMR (active metabolic rate).</p>
+      </div>
     </div>
 
     <div class="calculator">
-      <p class="calculator-tittle">Calculator</p>
-      <form class="total-Cal">
-        <label for="gender">Female</label>
-        <input type="radio" name="gender" value="female" class="gender" checked>
+      <h3 class="calculator-tittle">Calculator (calories)</h3>
+      <div>
+        <form class="total-Cal sub-container">
+          <div class="g-row1 row1">Gender</div>
+          <div class="g-row2">
+            <label>
+              <input type="radio" name="gender" value="female" class="gender" checked> Female
+            </label>
+            <label>
+                <input type="radio" name="gender" value="male" class="gender"> Male
+            </label>
+          </div>     
+          <div class="age-row1 row1">Age</div>
+           <div class="age-row2">
+            <input type="text" name="age" placeholder="input age in years" class="age" value="30"> years</select>
+           </div>
 
-        <label for="gender">Male</label>
-       <input type="radio" name="gender" value="male" class="gender">
+        <div class="w-row1 row1">Weight</div>
+        <div class="w-row2">
+          <input type="text" name="weight" placeholder="input weight" class="weight" value="65"> kg</select>
+        </div>
 
-       <br>
-  
-        <label for="age">Age</label>
-       <input type="text" name="age" placeholder="input age in years" class="age" value="30"></select>
+        <div class="h-row1 row1">Height</div>
+        <div class="h-row2">
+          <input type="text" name="height" placeholder="input height" class="height" value="165"> cm</select>
+        </div>
 
-        <br>
-
-        <label for="weight">Weight</label>
-        <input type="text" name="weight" placeholder="input weight" class="weight" value="65"></select>
-
-        <select name="w-value" id="weight-select">
-       <option value="kg">kg</option>
-       <option value="pounds">Pounds</option>
-        </select>
-
-        <br>
-
-        <label for="height">Height</label>
-       <input type="text" name="height" placeholder="input height" class="height" value="165"></select>
-
-       <select name="h-value" id="height-select">
-       <option value="cm">cm</option>
-       <option value="feet">Feet</option>
-       </select>
-
-        <br>
-
-       <label for="activity-level">Choose your level of activity</label>
-       <select name="select-activity-level" id="activity">
-       <option value="low" selected>No exercise</option>
-       <option value="light">Exercise 1-3 times per week</option>
-       <option value="moderate">Exercise 3-5 times per week</option>
-       <option value="active">Exercise 6-7 times per week</option>
-       <option value="intensive">Hard exercise 6-7 times per week</option>
-        </select>
-
-        <br>
-
-        <button class="calculate-btn">Calculate</button>
+        <div class="a-row1 row1">Level of activity</div>
+        <div class="a-row2">
+          <select name="select-activity-level" id="activity">
+          <option value="low" selected>No exercise</option>
+          <option value="light">Exercise 1-3 times per week</option>
+          <option value="moderate">Exercise 3-5 times per week</option>
+          <option value="active">Exercise 6-7 times per week</option>
+          <option value="intensive">Hard exercise 6-7 times per week</option>
+          </select>
+        </div>
+      </div>     
+    </form>
     
-      </form>
+    <div class="calculator-btns">
+      <button class="calculate-btn">Calculate</button>
+      <button class="reset-calculator-btn">Reset</button>
+    </div>
     </div>
     <div class="results display-results hidden">
-      <p>These are you results:</p>
-      <p>Total calories: <span class="AMR-result"></span> cal/day</p>
-      <p>Minimum ideal protein: <span class="protein-Min"></span> g/day</p>
-      <p>Maximum ideal protein: <span class="protein-Max"></span> g/day</p>  
-      <p>This is the amount of protein grams your should consume a day  to maintain your weigth and needs.</p>
+      <h3 class="results-tittle">Results</h3>
+      <p class="AMR-result-label">Total calories: <span class="AMR-result"></span> cal/day</p>
+      <p class="protein-Min-label">Minimum ideal protein: <span class="protein-Min"></span> g/day</p>
+      <p class="protein-Max-label">Maximum ideal protein: <span class="protein-Max"></span> g/day</p>  
+      <!-- <p>This is the amount of protein grams your should consume a day  to maintain your weigth and needs.</p> -->
+      <p class="resultes-note">&#10038; You should consider the minimum or the maximum value whether you are looking to maintain or to gain muscle mass, respectively.</p>
     </div>
+    
+    <div class="protein-selection-and-chart">
+      <div class="protein-selection">
+        <h3>Protein Calculator</h3>
+        <form class="protein-sources">
   
-    <h3 class="separator">Here are several strong sources of protein. Check how much of each you would need to reach your goal!</h3>
-
-    <div class="protein-selection">
-      <form class="protein-sources">
-
-        <label for="select-protein-source">Choose a protein source</label>
-        <select name="food" class="source-list">
-        <option value="empty">-Choose source-</option>
-        <option value="tofu">Tofu</option>
-        <option value="tempeh">Tempeh</option>
-        <option value="seitan">Seitan</option>
-        <option value="lentils">Lentils</option>
-        <option value="chickpeas">Chickpeas</option>
-        <option value="green-peas">Green peas</option>
-        <option value="peanuts">Peanuts</option>
-        <option value="almonds">Almonds</option>
-        <option value="quinoa">Quinoa</option>
-        <option value="egg">Eggs</option>
-        <option value="nutritional-yeast">Nutritional yeast</option>
-        </select>
+          <label for="select-protein-source">Choose a protein source</label>
+          <select name="food" class="source-list" id="food">
+          <option value="empty">-Choose source-</option>
+          <option value="tofu">Tofu </option>
+          <option value="tempeh">Tempeh</option>
+          <option value="seitan">Seitan</option>
+          <option value="lentils">Lentils</option>
+          <option value="chickpeas">Chickpeas</option>
+          <option value="peas">Green peas</option>
+          <option value="peanuts">Peanuts</option>
+          <option value="almonds">Almonds</option>
+          <option value="cashew">Cashew</option>
+          <option value="quinoa">Quinoa</option>
+          <option value="egg">Eggs</option>
+          <option value="nutritionalYeast">Nutritional yeast</option>
+          </select>
+          <br>
+          <label for="quantity">Quantity</label>
+          <input type="text" name="quantity" placeholder="100" value="100" class="quantity"> gr</select>
+          <br>
+          <button class="protein-button">Add</button>
+        </form>
   
-        <label for="quantity">Quantity</label>
-        <input type="text" name="quantity" placeholder="input quantity"></select>
+      </div>
+      <div class="protein-chart">
+        <div class="protein-chart-rows"></div>
+        <div class="display-sum">Total amount of protein: <span class="default-protein-sum-value">0</span> gr</div>
+        <button class="reset-button">Reset</button>
   
-        <input type="submit" value="Add">
-
-      </form>
-
-    </div>
-    <div class="protein-chart" >
-      <div class="display-sum"></div>
+      </div>
     </div>
 
     <footer class="footer">
       <p>The values presented may vary depending on the product that you may have. Please note that this site is only meant to be helpful and fun and never a replacement for medical advisement.</p>
-      <p>Sources?</p>
-      <!-- https://www.verywellfit.com/ -->
 
-
-      <p>m_eowCode 👋</p>
+      <p class="copy">&copy; Catarina Concei&#231;&#227;o</p>
     </footer>
   </body>
 </html>

@@ -1,4 +1,6 @@
-//Selecting button
+// --------BMR AND AMR CALCULATOR-------- //
+
+//Selecting buttons
 const calculateBtn = document.querySelector(".calculate-btn");
 
 let AMRresult = "";
@@ -42,9 +44,9 @@ calculateBtn.addEventListener("click", function (e) {
     init();
     resultsDiv.classList.remove("hidden");
 
-    AMRresult = BMRbyGender * activityLevel;
-    proteinMin = AMRresult * 0.1;
-    proteinMax = AMRresult * 0.35;
+    AMRresult = Math.round(BMRbyGender * activityLevel);
+    proteinMin = Math.round(AMRresult * 0.1);
+    proteinMax = Math.round(AMRresult * 0.35);
 
     AMRresultDisplay.innerHTML = `${AMRresult}`;
     proteinMinDisplay.innerHTML = `${proteinMin}`;
@@ -93,4 +95,63 @@ calculateBtn.addEventListener("click", function (e) {
 
     return;
   }
+});
+
+// --------PROTEIN CHART-------- //
+
+// const proteinChartDiv = document.querySelector(".protein-chart");
+const proteinBtn = document.querySelector(".protein-button");
+const resetBtn = document.querySelector(".reset-button");
+const proteinChartRow = document.querySelector(".protein-chart-rows");
+const protFoodArr = [];
+const proteinSumValue = document.querySelector(".default-protein-sum-value");
+
+const proteinPer100grams = {
+  tofu: 13,
+  tempeh: 19,
+  seitan: 75,
+  lentils: 9,
+  chickpeas: 19,
+  peas: 5,
+  peanuts: 26,
+  almonds: 21,
+  cashew: 18,
+  quinoa: 5,
+  egg: 13,
+  nutritionalYeast: 50,
+};
+
+const calculateProtein = function (food, quantity) {
+  return (Number(proteinPer100grams[food]) * Number(quantity)) / 100;
+};
+
+proteinBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const quantityInputed = document.querySelector(".quantity").value;
+  const food = document.querySelector("#food").value;
+
+  const newProteinValue = calculateProtein(food, quantityInputed);
+
+  if (food === "empty") {
+    alert("Choose protein source");
+    console.log(food);
+    return;
+    //create different signal?
+  }
+  if (food !== "empty") {
+    const html = `<div class="chart-row"> <b>${quantityInputed}g</b> of ${food} contains <b>${newProteinValue} gr</b> of protein</div>`;
+    proteinChartRow.insertAdjacentHTML("beforeend", html);
+    protFoodArr.push(newProteinValue);
+    const initialValue = 0;
+    const sum = protFoodArr.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      initialValue
+    );
+    proteinSumValue.innerHTML = sum;
+  }
+});
+
+resetBtn.addEventListener("click", function () {
+  proteinChartRow.innerHTML = "";
+  proteinSumValue.innerHTML = "0";
 });
