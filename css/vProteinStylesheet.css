@@ -31,6 +31,10 @@
 .footer {
   grid-area: footer;
 }
+.the-end {
+  font-size: 0.75rem;
+  color: rgba(75, 75, 75, 0.808);
+}
 /* --------MOBILE CSS GRID-------- */
 @media screen and (max-width: 480px) {
   .container {
