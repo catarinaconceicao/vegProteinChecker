@@ -214,13 +214,13 @@ button {
   margin: 5% 5%;
 }
 .protein-selection {
-  height: 11rem;
+  height: 13rem;
 }
 .protein-selection button {
   margin: 0% 70%;
 }
 .protein-sources label {
-  margin: 0% 0rem 0% 2rem;
+  margin: 0% 0rem 0% 1rem;
 }
 .intro,
 .results,
@@ -310,6 +310,10 @@ input[type="text"]:hover {
 .hidden {
   display: none;
 }
+.protein-chart-rows {
+  overflow-y: scroll;
+}
+
 /* --------------------------------END OF MAIN STYLING-------------------------------- */
 @media screen and (min-width: 481px) {
   .intro {
@@ -351,6 +355,7 @@ input[type="text"]:hover {
     width: 95%;
     padding: 0% 2.5%;
     margin: 0% 0%;
+    height: 10rem;
   }
   .chart-row {
     padding: 1%;
@@ -373,5 +378,8 @@ input[type="text"]:hover {
   }
   .hidden {
     visibility: hidden;
+  }
+  footer {
+    margin-top: 0%;
   }
 }
