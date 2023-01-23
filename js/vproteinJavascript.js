@@ -1,4 +1,11 @@
 // --------BMR AND AMR CALCULATOR-------- //
+const alertHeight = document.querySelector(".alert-height");
+const generalCalculatorAlert = document.querySelector(
+  ".alert-general-calculator"
+);
+const alertAge = document.querySelector(".alert-age");
+const alertWeight = document.querySelector(".alert-weight");
+const alertQuantity = document.querySelector(".alert-quantity");
 
 //Selecting buttons
 const calculateBtn = document.querySelector(".calculate-btn");
@@ -18,7 +25,6 @@ const AMRresultDisplay = document.querySelector(".AMR-result");
 const proteinMinDisplay = document.querySelector(".protein-Min");
 const proteinMaxDisplay = document.querySelector(".protein-Max");
 
-// init();
 // Calculate Protein Minimums and Maximums
 calculateBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -127,18 +133,38 @@ const calculateProtein = function (food, quantity) {
 
 proteinBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  const quantityInputed = document.querySelector(".quantity").value;
+  let quantityInputed = document.querySelector(".quantity").value;
   const food = document.querySelector("#food").value;
 
   const newProteinValue = calculateProtein(food, quantityInputed);
 
-  if (food === "empty") {
-    alert("Choose protein source");
-    console.log(food);
+  if (quantityInputed > 1000 || quantityInputed < 1) {
+    alertQuantity.classList.remove("hidden");
+    console.log(quantityInputed);
     return;
-    //create different signal?
   }
-  if (food !== "empty") {
+  if (quantityInputed.includes(",")) {
+    alertQuantity.classList.add("hidden");
+
+    newQttyImputed = Number(quantityInputed.replace(",", "."));
+
+    const html = `<div class="chart-row"> <b>${newQttyImputed}g</b> of ${food} contains <b>${calculateProtein(
+      food,
+      newQttyImputed
+    )} gr</b> of protein</div>`;
+
+    proteinChartRow.insertAdjacentHTML("beforeend", html);
+    protFoodArr.push(calculateProtein(food, newQttyImputed));
+    const initialValue = 0;
+    const sum = protFoodArr.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      initialValue
+    );
+    proteinSumValue.innerHTML = sum;
+
+    console.log(newQttyImputed);
+  } else {
+    alertQuantity.classList.add("hidden");
     const html = `<div class="chart-row"> <b>${quantityInputed}g</b> of ${food} contains <b>${newProteinValue} gr</b> of protein</div>`;
     proteinChartRow.insertAdjacentHTML("beforeend", html);
     protFoodArr.push(newProteinValue);
@@ -148,6 +174,7 @@ proteinBtn.addEventListener("click", function (e) {
       initialValue
     );
     proteinSumValue.innerHTML = sum;
+    console.log(quantityInputed);
   }
 });
 
@@ -155,3 +182,4 @@ resetBtn.addEventListener("click", function () {
   proteinChartRow.innerHTML = "";
   proteinSumValue.innerHTML = "0";
 });
+a = "1,2";

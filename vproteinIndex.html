@@ -30,6 +30,8 @@
     <div class="calculator">
       <h3 class="calculator-tittle">Calculator (calories)</h3>
       <div>
+        <span class="hidden alert-general-calculator alert">*Please provide only numbers.</span>
+
         <form class="total-Cal sub-container">
           <div class="g-row1 row1">Gender</div>
           <div class="g-row2">
@@ -39,20 +41,26 @@
             <label>
                 <input type="radio" name="gender" value="male" class="gender"> Male
             </label>
+
           </div>     
           <div class="age-row1 row1">Age</div>
            <div class="age-row2">
-            <input type="text" name="age" placeholder="input age in years" class="age" value="30"> years</select>
+            <input type="text" name="age" placeholder="30" class="age" value=""> years</select><br>
+            <span class="hidden alert-age alert">*Minimum 18 and maximum 80.</span>
            </div>
+
 
         <div class="w-row1 row1">Weight</div>
         <div class="w-row2">
-          <input type="text" name="weight" placeholder="input weight" class="weight" value="65"> kg</select>
+          <input type="text" name="weight" placeholder="65" class="weight" value=""> kg</select><br>
+          <span class="hidden alert-weight alert">*Minimum 40 and maximum 500.</span>
         </div>
 
         <div class="h-row1 row1">Height</div>
         <div class="h-row2">
-          <input type="text" name="height" placeholder="input height" class="height" value="165"> cm</select>
+          <input type="text" name="height" placeholder="165" class="height" value=""> cm</select><br>
+          <span class="hidden alert-height alert">*Minimum 120 and maximum 270.</span>
+
         </div>
 
         <div class="a-row1 row1">Level of activity</div>
@@ -89,7 +97,7 @@
   
           <label for="select-protein-source">Choose a protein source</label>
           <select name="food" class="source-list" id="food">
-          <option value="empty">-Choose source-</option>
+          <option disabled>-Source-</option>
           <option value="tofu">Tofu </option>
           <option value="tempeh">Tempeh</option>
           <option value="seitan">Seitan</option>
@@ -105,8 +113,10 @@
           </select>
           <br>
           <label for="quantity">Quantity</label>
-          <input type="text" name="quantity" placeholder="100" value="100" class="quantity"> gr</select>
+          <input type="text" name="quantity" placeholder="100" value="" class="quantity"> gr</select>
           <br>
+          <span class="hidden alert-quantity alert">*Minimum 1 and maximum 1000.</span>
+
           <button class="protein-button">Add</button>
         </form>
   
