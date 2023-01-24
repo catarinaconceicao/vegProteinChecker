@@ -2,8 +2,8 @@
 .container {
   display: grid;
   height: 100vh;
-  width: 100vw;
-
+  width: 95vw;
+  overflow-x: hidden;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 1fr 0.2fr 1fr 0.3fr;
   grid-template-areas:
@@ -39,30 +39,12 @@
   color: red;
   font-size: 12px;
 }
-/* --------MOBILE CSS GRID-------- */
-@media screen and (max-width: 480px) {
-  .container {
-    display: grid;
-    height: 100vh;
-    width: 95vw;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 0.2fr 1fr 0.3fr 1fr 0.2fr;
-    grid-template-areas:
-      "header"
-      "intro"
-      "calculator"
-      "results"
-      "protein-selection-and-chart"
-      "footer";
-    overflow-x: hidden;
-  }
-  /* --------------------------------MOBILE STYLING-------------------------------- */
-  /* --------------------------------END OF MOBILE Styling-------------------------------- */
-}
-/* --------------------------------MAIN STYLING-------------------------------- */
 body {
   font-family: "Open Sans", sans-serif;
   accent-color: rgba(11, 117, 26, 0.842);
+}
+.hidden {
+  display: hidden;
 }
 
 h1 {
@@ -299,6 +281,7 @@ input[type="text"]:hover {
 }
 .protein-chart {
   padding-top: 2.5%;
+  height: 20rem;
 }
 .age-row2,
 .w-row2,
@@ -312,14 +295,292 @@ input[type="text"]:hover {
 .calculator-btns {
   margin-top: 5%;
 }
-.hidden {
-  display: hidden;
-}
+
 .protein-chart-rows {
   overflow-y: scroll;
 }
 
-/* --------------------------------END OF MAIN STYLING-------------------------------- */
+/* --------MOBILE CSS GRID-------- */
+@media screen and (max-width: 480px) {
+  .hidden {
+    visibility: hidden;
+  }
+  .container {
+    display: grid;
+    height: 100vh;
+    width: 95vw;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.2fr 1fr 0.3fr 1fr 0.2fr;
+    grid-template-areas:
+      "header"
+      "intro"
+      "calculator"
+      "results"
+      "protein-selection-and-chart"
+      "footer";
+    overflow-x: hidden;
+  }
+  body {
+    font-family: "Open Sans", sans-serif;
+    accent-color: rgba(11, 117, 26, 0.842);
+  }
+  .hidden {
+    display: hidden;
+  }
+
+  h1 {
+    display: inline-block;
+  }
+  img {
+    display: inline-block;
+    width: 4rem;
+  }
+  h1,
+  h2,
+  h3,
+  footer {
+    text-align: center;
+  }
+  .header,
+  .intro {
+    border-bottom: 1px solid;
+    border: rgba(160, 179, 157, 0.74);
+  }
+  .footer {
+    border-top: 1px solid;
+    border: rgba(160, 179, 157, 0.74);
+  }
+  .calculator,
+  .results,
+  .protein-selection {
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .salutation-heading h2 {
+    color: rgba(11, 117, 26, 0.842);
+  }
+  .protein-sources select,
+  .calculator select,
+  .height,
+  .weight,
+  .age,
+  .quantity {
+    border-radius: 1rem;
+    border-color: rgba(224, 224, 224, 0);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+  .height,
+  .weight,
+  .age,
+  .quantity {
+    width: 3rem;
+    text-align: center;
+  }
+  button {
+    border-color: rgba(33, 131, 46, 0);
+    background-color: rgba(11, 117, 26, 0.842);
+    color: white;
+    border-radius: 10rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    width: 5.2rem;
+    height: 2rem;
+  }
+  .sub-container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "g-row1 g-row2 "
+      "age-row1 age-row2"
+      "w-row1 w-row2"
+      "h-row1 h-row2"
+      "a-row1 a-row2";
+  }
+  .g-row1 {
+    grid-area: g-row1;
+  }
+  .g-row2 {
+    grid-area: g-row2;
+  }
+  .age-row1 {
+    grid-area: age-row1;
+  }
+  .age-row2 {
+    grid-area: age-row2;
+  }
+  .w-row1 {
+    grid-area: w-row1;
+  }
+  .w-row2 {
+    grid-area: w-row2;
+  }
+  .h-row1 {
+    grid-area: h-row1;
+  }
+  .h-row2 {
+    grid-area: h-row2;
+  }
+  .a-row1 {
+    grid-area: a-row1;
+  }
+  .a-row2 {
+    grid-area: a-row2;
+  }
+  .calculator-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "calculate-btn reset-calculator-btn";
+  }
+  .calculator-btns button {
+    margin: 5% 30%;
+  }
+  .calculate-btn {
+    grid-area: calculate-btn;
+  }
+  .reset-calculator-btn {
+    grid-area: reset-calculator-btn;
+  }
+  .row1 {
+    margin: 0.25rem 0rem 0.25rem 2rem;
+    padding-top: 0.25rem;
+    font-weight: bold;
+  }
+  .row2 {
+    margin: 0.25rem 0rem;
+  }
+  .row2 select {
+    width: 10rem;
+  }
+  .AMR-result-label,
+  .protein-Min-label,
+  .protein-Max-label {
+    display: inline-block;
+    padding-bottom: 1rem;
+  }
+  .AMR-result-label span,
+  .protein-Min-label span,
+  .protein-Max-label span {
+    font-weight: bold;
+  }
+  .calculator,
+  .protein-selection,
+  .protein-chart {
+    background-color: rgb(255, 255, 255);
+    border-top: solid;
+    border-bottom: solid;
+    border-color: rgba(106, 190, 27, 0.966);
+    border-width: 0.3rem;
+    height: 30em;
+    width: 22em;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 5% 5%;
+  }
+  .protein-selection {
+    height: 16rem;
+  }
+  .protein-selection button {
+    margin: 0% 70%;
+  }
+  .protein-sources label {
+    margin: 0% 0rem 0% 1rem;
+  }
+  .intro,
+  .results,
+  .calculator,
+  .protein-chart,
+  .protein-selection,
+  footer {
+    margin: 2.5% 5%;
+    padding: 0% 5%;
+  }
+  .results {
+    background-color: rgb(223, 240, 207);
+  }
+  .chart-row {
+    border-radius: 10px;
+    margin: 0.1rem 0rem 0.1rem 0rem;
+    background-color: white;
+    text-align: justify;
+    padding: 0.1rem 1rem 0.1rem 3rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  button:hover {
+    cursor: pointer;
+    background-color: rgba(208, 243, 175, 0.945);
+    color: rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .g-row2 label:hover {
+    cursor: pointer;
+  }
+  select:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  input[type="text"]:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .protein-selection-and-chart {
+    height: 40rem;
+  }
+  .header {
+    text-align: center;
+  }
+  .footer {
+    margin-top: 10%;
+    border-top: 1px solid;
+    border-color: rgba(160, 179, 157, 0.74);
+  }
+  .intro {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgba(160, 179, 157, 0.74);
+  }
+  .AMR-result-label span,
+  .protein-Min-label span,
+  .protein-Max-label span {
+    font-weight: bold;
+  }
+  .protein-chart {
+    margin-top: 5%;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  .display-sum {
+    border-top: 1px solid;
+    border-color: rgba(11, 117, 26, 0.842);
+    font-size: 1.2rem;
+  }
+  .display-sum {
+    margin-top: 5%;
+  }
+  .protein-chart {
+    padding-top: 2.5%;
+    height: 20rem;
+  }
+  .age-row2,
+  .w-row2,
+  .h-row2,
+  .a-row2 {
+    padding-top: 2%;
+  }
+  .a-row2 select {
+    width: 90%;
+  }
+  .calculator-btns {
+    margin-top: 5%;
+  }
+
+  .protein-chart-rows {
+    overflow-y: scroll;
+  }
+}
 @media screen and (min-width: 481px) {
   .intro {
     margin-top: 0%;
@@ -327,7 +588,7 @@ input[type="text"]:hover {
   .calculator {
     width: 85%;
     margin-right: 5%;
-    margin-left: 5%;
+    margin-left: 10%;
   }
   .row1 {
     margin-left: 0%;

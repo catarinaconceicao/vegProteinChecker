@@ -10,6 +10,7 @@ const generalProteinAlert = document.querySelector(".general-protein-alert");
 
 //Selecting buttons
 const calculateBtn = document.querySelector(".calculate-btn");
+const resetCalculatorBtn = document.querySelector(".reset-calculator-btn");
 
 let AMRresult = "";
 let proteinMin = "";
@@ -60,9 +61,53 @@ calculateBtn.addEventListener("click", function (e) {
     proteinMaxDisplay.innerHTML = `${proteinMax}`;
   };
 
-  if (age < 18) {
-    alert(`Age needs to be equal or higher than 18`);
+  if (age < 18 || isNaN(age) || age > 80) {
+    alertAge.classList.remove("hidden");
     return;
+  } else if (isNaN(height)) {
+    alertWeight.classList.remove("hidden");
+    alertHeight.classList.remove("hidden");
+    return;
+  } else if (weight < 40 || weight > 300 || height < 120 || height > 270) {
+    alertWeight.classList.remove("hidden");
+    alertHeight.classList.remove("hidden");
+    return;
+  } else if (isNaN(weight) || weight.includes(",")) {
+    newQttyImputed = Number(weight.replace(",", "."));
+
+    if (isNaN(newQttyImputed) || newQttyImputed > 300) {
+      alertWeight.classList.remove("hidden");
+      return;
+    } else {
+      switch (gender) {
+        case "female":
+          if (activity === "low") {
+            calculateAndDisplayResults(BMRresultFem, low);
+          } else if (activity === "light") {
+            calculateAndDisplayResults(BMRresultFem, light);
+          } else if (activity === "moderate") {
+            calculateAndDisplayResults(BMRresultFem, moderate);
+          } else if (activity === "active") {
+            calculateAndDisplayResults(BMRresultFem, active);
+          } else {
+            calculateAndDisplayResults(BMRresultFem, intensive);
+          }
+          break;
+        case "male":
+          if (activity === "low") {
+            calculateAndDisplayResults(BMRresultMale, low);
+          } else if (activity === "light") {
+            calculateAndDisplayResults(BMRresultMale, light);
+          } else if (activity === "moderate") {
+            calculateAndDisplayResults(BMRresultMale, moderate);
+          } else if (activity === "active") {
+            calculateAndDisplayResults(BMRresultMale, active);
+          } else {
+            calculateAndDisplayResults(BMRresultMale, intensive);
+          }
+          break;
+      }
+    }
   } else {
     switch (gender) {
       case "female":
@@ -80,21 +125,27 @@ calculateBtn.addEventListener("click", function (e) {
         break;
       case "male":
         if (activity === "low") {
-          calculateAndDisplayResults(BMRresultFem, low);
+          calculateAndDisplayResults(BMRresultMale, low);
         } else if (activity === "light") {
-          calculateAndDisplayResults(BMRresultFem, light);
+          calculateAndDisplayResults(BMRresultMale, light);
         } else if (activity === "moderate") {
-          calculateAndDisplayResults(BMRresultFem, moderate);
+          calculateAndDisplayResults(BMRresultMale, moderate);
         } else if (activity === "active") {
-          calculateAndDisplayResults(BMRresultFem, active);
+          calculateAndDisplayResults(BMRresultMale, active);
         } else {
-          calculateAndDisplayResults(BMRresultFem, intensive);
+          calculateAndDisplayResults(BMRresultMale, intensive);
         }
         break;
     }
   }
 });
 
+resetCalculatorBtn.addEventListener("click", function () {
+  document.querySelector(".age").value = "";
+  document.querySelector(".weight").value = "";
+  document.querySelector(".height").value = "";
+  resultsDiv.classList.add("hidden");
+});
 // --------PROTEIN CHART-------- //
 
 // const proteinChartDiv = document.querySelector(".protein-chart");
@@ -141,7 +192,7 @@ proteinBtn.addEventListener("click", function (e) {
     alertQuantity.classList.add("hidden");
     newQttyImputed = Number(quantityInputed.replace(",", "."));
 
-    if (isNaN(newQttyImputed)) {
+    if (isNaN(newQttyImputed) || newQttyImputed > 1000) {
       generalProteinAlert.classList.remove("hidden");
       return;
     } else {
@@ -174,3 +225,5 @@ proteinBtn.addEventListener("click", function (e) {
     proteinSumValue.innerHTML = sum;
   }
 });
+
+//////////////////////////////////////////////////////////////////////
