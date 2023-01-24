@@ -6,6 +6,7 @@ const generalCalculatorAlert = document.querySelector(
 const alertAge = document.querySelector(".alert-age");
 const alertWeight = document.querySelector(".alert-weight");
 const alertQuantity = document.querySelector(".alert-quantity");
+const generalProteinAlert = document.querySelector(".general-protein-alert");
 
 //Selecting buttons
 const calculateBtn = document.querySelector(".calculate-btn");
@@ -62,44 +63,35 @@ calculateBtn.addEventListener("click", function (e) {
   if (age < 18) {
     alert(`Age needs to be equal or higher than 18`);
     return;
-  }
-
-  if (gender === "female") {
-    if (activity === "low") {
-      calculateAndDisplayResults(BMRresultFem, low);
+  } else {
+    switch (gender) {
+      case "female":
+        if (activity === "low") {
+          calculateAndDisplayResults(BMRresultFem, low);
+        } else if (activity === "light") {
+          calculateAndDisplayResults(BMRresultFem, light);
+        } else if (activity === "moderate") {
+          calculateAndDisplayResults(BMRresultFem, moderate);
+        } else if (activity === "active") {
+          calculateAndDisplayResults(BMRresultFem, active);
+        } else {
+          calculateAndDisplayResults(BMRresultFem, intensive);
+        }
+        break;
+      case "male":
+        if (activity === "low") {
+          calculateAndDisplayResults(BMRresultFem, low);
+        } else if (activity === "light") {
+          calculateAndDisplayResults(BMRresultFem, light);
+        } else if (activity === "moderate") {
+          calculateAndDisplayResults(BMRresultFem, moderate);
+        } else if (activity === "active") {
+          calculateAndDisplayResults(BMRresultFem, active);
+        } else {
+          calculateAndDisplayResults(BMRresultFem, intensive);
+        }
+        break;
     }
-    if (activity === "light") {
-      calculateAndDisplayResults(BMRresultFem, light);
-    }
-    if (activity === "moderate") {
-      calculateAndDisplayResults(BMRresultFem, moderate);
-    }
-    if (activity === "active") {
-      calculateAndDisplayResults(BMRresultFem, active);
-    }
-    if (activity === "intensive") {
-      calculateAndDisplayResults(BMRresultFem, intensive);
-    }
-  }
-
-  if (gender === "male") {
-    if (activity === "low") {
-      calculateAndDisplayResults(BMRresultMale, low);
-    }
-    if (activity === "light") {
-      calculateAndDisplayResults(BMRresultMale, light);
-    }
-    if (activity === "moderate") {
-      calculateAndDisplayResults(BMRresultMale, moderate);
-    }
-    if (activity === "active") {
-      calculateAndDisplayResults(BMRresultMale, active);
-    }
-    if (activity === "intensive") {
-      calculateAndDisplayResults(BMRresultMale, intensive);
-    }
-
-    return;
   }
 });
 
@@ -131,40 +123,46 @@ const calculateProtein = function (food, quantity) {
   return (Number(proteinPer100grams[food]) * Number(quantity)) / 100;
 };
 
+resetBtn.addEventListener("click", function () {
+  proteinChartRow.innerHTML = "";
+  proteinSumValue.innerHTML = "0";
+});
+
 proteinBtn.addEventListener("click", function (e) {
   e.preventDefault();
   let quantityInputed = document.querySelector(".quantity").value;
   const food = document.querySelector("#food").value;
-
   const newProteinValue = calculateProtein(food, quantityInputed);
 
   if (quantityInputed > 1000 || quantityInputed < 1) {
     alertQuantity.classList.remove("hidden");
-    console.log(quantityInputed);
     return;
-  }
-  if (quantityInputed.includes(",")) {
+  } else if (isNaN(quantityInputed) || quantityInputed.includes(",")) {
     alertQuantity.classList.add("hidden");
-
     newQttyImputed = Number(quantityInputed.replace(",", "."));
 
-    const html = `<div class="chart-row"> <b>${newQttyImputed}g</b> of ${food} contains <b>${calculateProtein(
-      food,
-      newQttyImputed
-    )} gr</b> of protein</div>`;
-
-    proteinChartRow.insertAdjacentHTML("beforeend", html);
-    protFoodArr.push(calculateProtein(food, newQttyImputed));
-    const initialValue = 0;
-    const sum = protFoodArr.reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
-      initialValue
-    );
-    proteinSumValue.innerHTML = sum;
-
-    console.log(newQttyImputed);
+    if (isNaN(newQttyImputed)) {
+      generalProteinAlert.classList.remove("hidden");
+      return;
+    } else {
+      const html = `<div class="chart-row"> <b>${newQttyImputed}g</b> of ${food} contains <b>${calculateProtein(
+        food,
+        newQttyImputed
+      )} gr</b> of protein</div>`;
+      proteinChartRow.insertAdjacentHTML("beforeend", html);
+      protFoodArr.push(calculateProtein(food, newQttyImputed));
+      const initialValue = 0;
+      const sum = protFoodArr.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        initialValue
+      );
+      proteinSumValue.innerHTML = sum;
+      return;
+    }
   } else {
+    generalProteinAlert.classList.add("hidden");
     alertQuantity.classList.add("hidden");
+
     const html = `<div class="chart-row"> <b>${quantityInputed}g</b> of ${food} contains <b>${newProteinValue} gr</b> of protein</div>`;
     proteinChartRow.insertAdjacentHTML("beforeend", html);
     protFoodArr.push(newProteinValue);
@@ -174,12 +172,5 @@ proteinBtn.addEventListener("click", function (e) {
       initialValue
     );
     proteinSumValue.innerHTML = sum;
-    console.log(quantityInputed);
   }
 });
-
-resetBtn.addEventListener("click", function () {
-  proteinChartRow.innerHTML = "";
-  proteinSumValue.innerHTML = "0";
-});
-a = "1,2";
