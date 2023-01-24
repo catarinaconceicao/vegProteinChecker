@@ -281,7 +281,7 @@ input[type="text"]:hover {
 }
 .protein-chart {
   padding-top: 2.5%;
-  height: 20rem;
+  height: 23rem;
 }
 .age-row2,
 .w-row2,
@@ -298,8 +298,12 @@ input[type="text"]:hover {
 
 .protein-chart-rows {
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 }
-
+input:focus::placeholder {
+  color: transparent;
+}
 /* --------MOBILE CSS GRID-------- */
 @media screen and (max-width: 480px) {
   .hidden {
@@ -579,6 +583,11 @@ input[type="text"]:hover {
 
   .protein-chart-rows {
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  input:focus::placeholder {
+    color: transparent;
   }
 }
 @media screen and (min-width: 481px) {

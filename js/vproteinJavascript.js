@@ -207,8 +207,8 @@ proteinBtn.addEventListener("click", function (e) {
         (accumulator, currentValue) => accumulator + currentValue,
         initialValue
       );
-      proteinSumValue.innerHTML = sum;
-      return;
+      proteinSumValue.innerHTML = sum.toFixed(2);
+      proteinChartRow.return;
     }
   } else {
     generalProteinAlert.classList.add("hidden");
@@ -222,7 +222,7 @@ proteinBtn.addEventListener("click", function (e) {
       (accumulator, currentValue) => accumulator + currentValue,
       initialValue
     );
-    proteinSumValue.innerHTML = sum;
+    proteinSumValue.innerHTML = sum.toFixed(2);
   }
 });
 
