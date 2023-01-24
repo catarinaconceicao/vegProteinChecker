@@ -581,11 +581,12 @@ input:focus::placeholder {
     margin-top: 5%;
   }
 
-  .protein-chart-rows {
+  .protein-chart {
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column-reverse;
+    -webkit-overflow-scrolling: touch;
+    scroll-margin-top: scroll;
   }
+
   input:focus::placeholder {
     color: transparent;
   }
